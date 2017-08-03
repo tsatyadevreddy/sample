@@ -19,6 +19,7 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+<%= will_paginate @users %>
 
 <script>
   $(document).ready(function(){
@@ -27,6 +28,17 @@
       success: function(data){
         $('#content').html(data);
       }
+    });
+
+    $('div.pagination > a[href]').on('click', function(e){
+      var obj = $(this);
+      $.ajax({
+        url: "<%= fetch_users_path %>?" + obj.attr('href').split('?')[1],
+        success: function(data){
+          $('#content').html(data);
+        }
+      });
+      return false;
     });
   })
 </script>

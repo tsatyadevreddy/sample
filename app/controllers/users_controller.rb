@@ -5,10 +5,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @users = User.paginate(:page => params[:page])
   end
 
   def fetch
-    @users = User.includes(:roles).all
+    @users = User.includes(:roles).paginate(:page => params[:page])
 
     render :partial => 'fetch'
   end
