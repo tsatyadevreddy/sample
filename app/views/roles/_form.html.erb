@@ -5,7 +5,7 @@
         <%= f.label :name %>
         <%= f.text_field :name %>
         <%= f.check_box :active if params[:action] == 'hide' %>
-        <%= f.label :active if params[:action] == 'hide' %>
+        <%= f.label :active, "Inactive" if params[:action] == 'hide' %>
         <%= f.submit %>
       </div>
     <% end %>
